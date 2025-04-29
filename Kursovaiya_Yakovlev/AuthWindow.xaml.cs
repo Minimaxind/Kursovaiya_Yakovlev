@@ -17,7 +17,7 @@ namespace Kursovaiya_Yakovlev
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
@@ -49,7 +49,8 @@ namespace Kursovaiya_Yakovlev
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
             RegWindow regWindow = new RegWindow();
-            regWindow.ShowDialog();
+            regWindow.Show();
+            this.Hide();
         }
     }
 }

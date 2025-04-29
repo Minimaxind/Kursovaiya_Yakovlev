@@ -150,33 +150,44 @@
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="circle" Property="Fill" Value="#FFDED4D4"/>
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="circle" Property="Fill" Value="#FFDEeeee"/>
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
                 <Button x:Name="BackButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
-        Margin="0,15,50,0" Width="30" Height="30" Background="#FFE0E0E0" 
+        Margin="0,15,50,0" Width="30" Height="30" Background="Transparent" 
         BorderThickness="0" Click="BackButton_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Grid>
-                                <!-- Красный круг -->
+                                <!-- Белый круг -->
                                 <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FFE0E0E0"/>
 
-                                <!-- Идеально центрированный крестик -->
-                               
+                                <!-- Классическая стрелка влево -->
+                                <Viewbox Width="20" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Data="M15,8 L5,8 M5,8 L9,4 M5,8 L9,12" 
+                          Stroke="#887BFF"
+                          StrokeThickness="2"
+                          StrokeLineJoin="Round"
+                          StrokeStartLineCap="Round" 
+                          StrokeEndLineCap="Round" Height="16" Stretch="Fill" Width="16">
+                                        <Path.RenderTransform>
+                                            <TranslateTransform X="0.5" Y="0.5"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Viewbox>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
+                                    <Setter TargetName="circle" Property="Fill" Value="white"/>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
+                                    <Setter TargetName="circle" Property="Fill" Value="Silver"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

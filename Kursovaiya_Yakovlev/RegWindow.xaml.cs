@@ -25,7 +25,7 @@ namespace Kursovaiya_Yakovlev
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,9 @@ namespace Kursovaiya_Yakovlev
         
             private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            AuthWindow AuthWindow = new AuthWindow();
+            AuthWindow.Show();
+            this.Hide();
         }
 
     }
