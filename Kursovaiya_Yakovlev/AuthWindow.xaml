@@ -120,7 +120,7 @@
                     Click="AuthorizationButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" CornerRadius="10" RenderTransformOrigin="0.5,0.5">
+                        <Border Name="Border" Background="AliceBlue" CornerRadius="10" RenderTransformOrigin="0.5,0.5">
                             <Border.RenderTransform>
                                 <ScaleTransform ScaleX="1" ScaleY="1"/>
                             </Border.RenderTransform>
