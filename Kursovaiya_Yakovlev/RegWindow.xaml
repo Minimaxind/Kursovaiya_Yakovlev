@@ -255,11 +255,11 @@
                     <Grid>
                         <PasswordBox x:Name="PasswordBox" Grid.Column="1" Background="{x:Null}" FontSize="24"
              Padding="15,5" BorderThickness="0" VerticalContentAlignment="Center" Foreground="#333333"
-             PasswordChanged="PasswordBox_PasswordChanged"/>
+             PasswordChanged="PasswordBox_PasswordChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                         <TextBlock x:Name="PasswordPlaceholder" Text="Пароль" IsHitTestVisible="False" 
            Foreground="#888888" FontSize="19" Padding="15,5" VerticalAlignment="Center" 
-           Margin="75,0,-4,0"/>
+           Margin="0,0,-4,0" TextAlignment="Center"/>
                     </Grid>
                 </Border>
             </StackPanel>
