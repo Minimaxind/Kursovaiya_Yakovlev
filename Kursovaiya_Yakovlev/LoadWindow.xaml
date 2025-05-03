@@ -24,7 +24,7 @@
         <!-- Основное содержимое -->
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
             <Viewbox Width="200" Height="200" Margin="0,0,0,40">
-                <Image x:Name="CollegeLogo" Source="/college.png" Height="2690" Width="2705"/>
+                <Image x:Name="CollegeLogo" Source="/college.png" Height="2690" Width="2705" Stretch="UniformToFill"/>
             </Viewbox>
 
             <!-- Прогресс-бар -->
@@ -39,7 +39,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Версия: " FontSize="16" Foreground="#888888"/>
-                <TextBlock x:Name="VersionText" Text="1.0.0" FontSize="16" Foreground="#887BFF"/>
+                <TextBlock x:Name="VersionText" Text="BETA 0.3.0" FontSize="16" Foreground="#887BFF"/>
             </StackPanel>
         </StackPanel>
     </Grid>
