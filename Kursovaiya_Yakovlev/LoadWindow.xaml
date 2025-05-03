@@ -14,7 +14,7 @@
         <Border Background="#887BFF" Grid.Row="0" CornerRadius="0,0,100,0" Margin="-20,-21,-20,0"
                 Height="185" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid>
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,436,0">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="300,0,407,0">
                     <TextBlock Text="Инициализация системы" FontSize="36" FontWeight="Bold" Foreground="White"/>
                     <TextBlock Text="ИС «РиелТОР»" FontSize="32" FontWeight="SemiBold" Foreground="White" Margin="0,20,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
