@@ -12,6 +12,7 @@
     <None Remove="college.png" />
     <None Remove="email_icon.png" />
     <None Remove="password_icon.png" />
+    <None Remove="reload.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
     </Resource>
     <Resource Include="email_icon.png" />
     <Resource Include="password_icon.png" />
+    <Resource Include="reload.png" />
   </ItemGroup>
 
 </Project>

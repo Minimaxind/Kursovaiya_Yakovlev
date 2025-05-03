@@ -18,12 +18,73 @@
                     <TextBlock Text="Инициализация системы" FontSize="36" FontWeight="Bold" Foreground="White"/>
                     <TextBlock Text="ИС «РиелТОР»" FontSize="32" FontWeight="SemiBold" Foreground="White" Margin="0,20,0,0" HorizontalAlignment="Center"/>
                 </StackPanel>
+                <Button x:Name="CloseButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+Margin="0,15,15,0" Width="30" Height="30" Background="Transparent" 
+BorderThickness="0" Click="CloseButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <!-- Красный круг -->
+                                <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FF4444"/>
+
+                                <!-- Идеально центрированный крестик -->
+                                <Grid Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                  StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                  StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="-45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="ReloadButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+        Margin="0,15,50,0" Width="30" Height="30" Background="Transparent" 
+        BorderThickness="0" Click="ReloadButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <!-- Фон кнопки -->
+                                <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FFE0E0E0"/>
+
+                                <!-- Иконка из ресурсов -->
+                                <Image Source="reload.png" 
+                       Width="25" Height="25"
+                       RenderOptions.BitmapScalingMode="HighQuality" Margin="2,1,2,4"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="Silver"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
         </Border>
 
         <!-- Основное содержимое -->
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
-            <Viewbox Width="200" Height="200" Margin="0,0,0,40">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="800">
+            <Viewbox Width="400" Height="200" Margin="0,0,0,40">
                 <Image x:Name="CollegeLogo" Source="/college.png" Height="2690" Width="2705" Stretch="UniformToFill"/>
             </Viewbox>
 
