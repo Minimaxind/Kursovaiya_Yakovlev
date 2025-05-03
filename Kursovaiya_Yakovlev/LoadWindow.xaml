@@ -1,0 +1,46 @@
+﻿<Window x:Class="Kursovaiya_Yakovlev.LoadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Загрузка системы" Height="627" Width="1263"
+        Background="#E0E0E0" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowStyle="None">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="117"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Border Background="#887BFF" Grid.Row="0" CornerRadius="0,0,100,0" Margin="-20,-21,-20,0"
+                Height="185" VerticalAlignment="Top" Grid.RowSpan="2">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,436,0">
+                    <TextBlock Text="Инициализация системы" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="ИС «РиелТОР»" FontSize="32" FontWeight="SemiBold" Foreground="White" Margin="0,20,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Основное содержимое -->
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
+            <Viewbox Width="500" Height="250" Margin="0,0,0,40">
+                <Image x:Name="CollegeLogo" Source="/NovSU_logo_rus_horizontal.jpg" Height="2690" Width="2705"/>
+            </Viewbox>
+
+            <!-- Прогресс-бар -->
+            <Border Background="#D3D3D3" Height="20" CornerRadius="10" Margin="0,0,0,20">
+                <ProgressBar x:Name="ProgressBar" Height="20" 
+                            Foreground="#887BFF" Background="Transparent" 
+                            IsIndeterminate="True"/>
+            </Border>
+
+            <TextBlock x:Name="StatusText" Text="Инициализация системы..." 
+                       FontSize="24" Foreground="#333333" TextAlignment="Center" Margin="0,0,0,40"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Версия: " FontSize="16" Foreground="#888888"/>
+                <TextBlock x:Name="VersionText" Text="1.0.0" FontSize="16" Foreground="#887BFF"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

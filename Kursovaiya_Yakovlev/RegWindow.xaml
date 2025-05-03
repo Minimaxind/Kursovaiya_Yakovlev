@@ -1,13 +1,14 @@
 ﻿<Window x:Class="Kursovaiya_Yakovlev.RegWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" 
         Title="Регистрация" Height="627" Width="1263"
         Background="#E0E0E0" WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" WindowStyle="None">
 
     <Window.Resources>
         <!-- Общие стили -->
-        <Style x:Key="InputFieldStyle" TargetType="TextBox">
+        <Style x:Key="InputFieldStyle" TargetType="{x:Type TextBox}">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Padding" Value="15,5"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -19,7 +20,7 @@
         </Style>
 
         <!-- Базовый стиль для плейсхолдеров -->
-        <Style x:Key="PlaceholderBaseStyle" TargetType="TextBlock">
+        <Style x:Key="PlaceholderBaseStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="#888888"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -30,7 +31,7 @@
         </Style>
 
         <!-- Стиль для плейсхолдеров TextBox -->
-        <Style x:Key="TextBoxPlaceholderStyle" TargetType="TextBlock" BasedOn="{StaticResource PlaceholderBaseStyle}">
+        <Style x:Key="TextBoxPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=FirstNameBox}" Value="">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -42,7 +43,7 @@
         </Style>
 
         <!-- Стиль для плейсхолдера PasswordBox -->
-        <Style x:Key="PasswordPlaceholderStyle" TargetType="TextBlock" BasedOn="{StaticResource PlaceholderBaseStyle}">
+        <Style x:Key="PasswordPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Password, ElementName=PasswordBox}" Value="">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -51,7 +52,7 @@
         </Style>
 
         <!-- Индивидуальные стили для каждого плейсхолдера -->
-        <Style x:Key="LastNamePlaceholderStyle" TargetType="TextBlock" BasedOn="{StaticResource PlaceholderBaseStyle}">
+        <Style x:Key="LastNamePlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=LastNameBox}" Value="">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -62,7 +63,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="MiddleNamePlaceholderStyle" TargetType="TextBlock" BasedOn="{StaticResource PlaceholderBaseStyle}">
+        <Style x:Key="MiddleNamePlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=MiddleNameBox}" Value="">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -73,7 +74,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="EmailPlaceholderStyle" TargetType="TextBlock" BasedOn="{StaticResource PlaceholderBaseStyle}">
+        <Style x:Key="EmailPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=EmailBox}" Value="">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -84,7 +85,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="PassportPlaceholderStyle" TargetType="TextBlock" BasedOn="{StaticResource PlaceholderBaseStyle}">
+        <Style x:Key="PassportPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=PassportBox}" Value="">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -95,7 +96,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="PhonePlaceholderStyle" TargetType="TextBlock" BasedOn="{StaticResource PlaceholderBaseStyle}">
+        <Style x:Key="PhonePlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=PhoneBox}" Value="">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -127,7 +128,7 @@
         Margin="0,15,15,0" Width="30" Height="30" Background="Transparent" 
         BorderThickness="0" Click="CloseButton_Click">
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
+                        <ControlTemplate TargetType="{x:Type Button}">
                             <Grid>
                                 <!-- Красный круг -->
                                 <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FF4444"/>
@@ -163,7 +164,7 @@
         Margin="0,15,50,0" Width="30" Height="30" Background="Transparent" 
         BorderThickness="0" Click="BackButton_Click">
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
+                        <ControlTemplate TargetType="{x:Type Button}">
                             <Grid>
                                 <!-- Белый круг -->
                                 <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FFE0E0E0"/>
@@ -288,8 +289,8 @@
         <Button Content="Зарегистрироваться" Height="60" Foreground="White" FontWeight="SemiBold" FontSize="20"
         Click="RegisterButton_Click" Margin="441,349,441,14" Grid.RowSpan="2" Grid.Row="1">
             <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Name="Border" Background="#0DA960" CornerRadius="10" RenderTransformOrigin="0.5,0.5">
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" Background="#0DA960" CornerRadius="10" RenderTransformOrigin="0.5,0.5">
                         <Border.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Border.RenderTransform>
