@@ -23,8 +23,8 @@
 
         <!-- Основное содержимое -->
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
-            <Viewbox Width="500" Height="250" Margin="0,0,0,40">
-                <Image x:Name="CollegeLogo" Source="/NovSU_logo_rus_horizontal.jpg" Height="2690" Width="2705"/>
+            <Viewbox Width="200" Height="200" Margin="0,0,0,40">
+                <Image x:Name="CollegeLogo" Source="/logo.png" Height="2690" Width="2705"/>
             </Viewbox>
 
             <!-- Прогресс-бар -->
