@@ -1,0 +1,308 @@
+﻿<Window x:Class="Kursovaiya_Yakovlev.ChngWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" 
+        Title="Регистрация" Height="627" Width="1263"
+        Background="#E0E0E0" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowStyle="None">
+
+    <Window.Resources>
+        <!-- Общие стили -->
+        <Style x:Key="InputFieldStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Padding" Value="15,5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Базовый стиль для плейсхолдеров -->
+        <Style x:Key="PlaceholderBaseStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#888888"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+
+        <!-- Стиль для плейсхолдеров TextBox -->
+        <Style x:Key="TextBoxPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=FirstNameBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text, ElementName=FirstNameBox}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для плейсхолдера PasswordBox -->
+        <Style x:Key="PasswordPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Password, ElementName=PasswordBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Индивидуальные стили для каждого плейсхолдера -->
+        <Style x:Key="LastNamePlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=LastNameBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text, ElementName=LastNameBox}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MiddleNamePlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=MiddleNameBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text, ElementName=MiddleNameBox}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="EmailPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=EmailBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text, ElementName=EmailBox}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PassportPlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=PassportBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text, ElementName=PassportBox}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PhonePlaceholderStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource PlaceholderBaseStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=PhoneBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Text, ElementName=PhoneBox}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition/>
+            <RowDefinition Height="35.5"/>
+            <RowDefinition Height="44.5"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Border Background="#887BFF" Grid.Row="0" CornerRadius="0,0,100,0" Margin="-20,-20,-20,0" Height="185" VerticalAlignment="Top" Grid.RowSpan="2">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Width="1253">
+                    <TextBlock Text="Личные данные" FontSize="45" FontWeight="Bold" Foreground="White" Width="357" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <Button x:Name="CloseButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,15,15,0" Width="30" Height="30" Background="Transparent" 
+                        BorderThickness="0" Click="CloseButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <!-- Красный круг -->
+                                <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FF4444"/>
+
+                                <!-- Идеально центрированный крестик -->
+                                <Grid Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="-45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="BackButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,15,50,0" Width="30" Height="30" Background="Transparent" 
+                        BorderThickness="0" Click="BackButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <!-- Белый круг -->
+                                <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FFE0E0E0"/>
+
+                                <!-- Классическая стрелка влево -->
+                                <Viewbox Width="20" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Data="M15,8 L5,8 M5,8 L9,4 M5,8 L9,12" 
+                                          Stroke="#887BFF"
+                                          StrokeThickness="2"
+                                          StrokeLineJoin="Round"
+                                          StrokeStartLineCap="Round" 
+                                          StrokeEndLineCap="Round" Height="16" Stretch="Fill" Width="16">
+                                        <Path.RenderTransform>
+                                            <TranslateTransform X="0.5" Y="0.5"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Viewbox>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="white"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="Silver"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Основная форма с 2 колонками -->
+        <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="800">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Общие RowDefinitions для выравнивания строк -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="60"/>
+
+            </Grid.RowDefinitions>
+
+            <!-- Левая колонка -->
+            <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="7" VerticalAlignment="Top" Margin="0,0,10,0">
+                <!-- Имя -->
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                    <Grid>
+                        <TextBox x:Name="FirstNameBox" Style="{StaticResource InputFieldStyle}"/>
+                        <TextBlock Text="Имя" Style="{StaticResource TextBoxPlaceholderStyle}"/>
+                    </Grid>
+                </Border>
+
+                <!-- Фамилия -->
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                    <Grid>
+                        <TextBox x:Name="LastNameBox" Style="{StaticResource InputFieldStyle}"/>
+                        <TextBlock Text="Фамилия" Style="{StaticResource LastNamePlaceholderStyle}"/>
+                    </Grid>
+                </Border>
+
+                <!-- Отчество -->
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                    <Grid>
+                        <TextBox x:Name="MiddleNameBox" Style="{StaticResource InputFieldStyle}"/>
+                        <TextBlock Text="Отчество" Style="{StaticResource MiddleNamePlaceholderStyle}"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!-- Правая колонка -->
+            <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="7" VerticalAlignment="Top" Margin="10,0,0,0">
+
+                <!-- Пароль -->
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                    <Grid>
+                        <PasswordBox x:Name="PasswordBox" Background="{x:Null}" FontSize="24"
+                                     Padding="15,5" BorderThickness="0" VerticalContentAlignment="Center" 
+                                     Foreground="#333333" PasswordChanged="PasswordBox_PasswordChanged" 
+                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Пароль" Style="{StaticResource PasswordPlaceholderStyle}"/>
+                    </Grid>
+                </Border>
+
+                <!-- Паспорт -->
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                    <Grid>
+                        <TextBox x:Name="PassportBox" Style="{StaticResource InputFieldStyle}"/>
+                        <TextBlock Text="Паспорт" Style="{StaticResource PassportPlaceholderStyle}"/>
+                    </Grid>
+                </Border>
+
+                <!-- Телефон -->
+                <Border Background="#D3D3D3" Height="60" CornerRadius="10">
+                    <Grid>
+                        <TextBox x:Name="PhoneBox" Style="{StaticResource InputFieldStyle}"/>
+                        <TextBlock Text="Номер телефона" Style="{StaticResource PhonePlaceholderStyle}"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- Кнопка Регистрация с анимацией нажатия -->
+        <Button Content="Изменить" Height="60" Foreground="White" FontWeight="SemiBold" FontSize="20"
+                Click="RegisterButton_Click" Margin="441,349,441,14" Grid.RowSpan="2" Grid.Row="1">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" Background="#0DA960" CornerRadius="10" RenderTransformOrigin="0.5,0.5">
+                        <Border.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Border.RenderTransform>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
+                            <Setter TargetName="Border" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
+                            <Setter TargetName="Border" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</Window>

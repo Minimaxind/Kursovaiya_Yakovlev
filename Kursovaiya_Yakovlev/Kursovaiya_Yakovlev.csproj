@@ -30,4 +30,10 @@
     <Resource Include="reload.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="ChngWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

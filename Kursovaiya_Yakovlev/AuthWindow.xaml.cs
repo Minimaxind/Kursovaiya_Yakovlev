@@ -39,7 +39,14 @@ namespace Kursovaiya_Yakovlev
             var user = _dbContext.users.FirstOrDefault(s => s.email == email && s.password == password);
             if (user != null)
             {
+                UserSession.UserId = user.Id;
+                UserSession.FirstName = user.firstName;
+                UserSession.LastName = user.lastName;
+                UserSession.accessR = user.accessR;
                 MessageBox.Show($"Добро пожаловать, {user.firstName} {user.lastName}!");
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
             }
             else
             {
@@ -50,7 +57,7 @@ namespace Kursovaiya_Yakovlev
         {
             RegWindow regWindow = new RegWindow();
             regWindow.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }
