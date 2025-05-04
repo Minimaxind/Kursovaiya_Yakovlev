@@ -22,12 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="college.png">
+    <Resource Include="Images\college.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="email_icon.png" />
-    <Resource Include="password_icon.png" />
-    <Resource Include="reload.png" />
+    <Resource Include="Images\email_icon.png" />
+    <Resource Include="Images\password_icon.png" />
+    <Resource Include="Images\reload.png" />
   </ItemGroup>
 
   <ItemGroup>

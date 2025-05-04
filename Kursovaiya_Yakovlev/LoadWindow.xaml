@@ -64,7 +64,7 @@ BorderThickness="0" Click="CloseButton_Click">
                                 <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FFE0E0E0"/>
 
                                 <!-- Иконка из ресурсов -->
-                                <Image Source="reload.png" 
+                                <Image Source="/Images/reload.png" 
                        Width="25" Height="25"
                        RenderOptions.BitmapScalingMode="HighQuality" Margin="2,1,2,4"/>
                             </Grid>
@@ -85,7 +85,7 @@ BorderThickness="0" Click="CloseButton_Click">
         <!-- Основное содержимое -->
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="800">
             <Viewbox Width="400" Height="200" Margin="0,0,0,40">
-                <Image x:Name="CollegeLogo" Source="/college.png" Height="2690" Width="2705" Stretch="UniformToFill"/>
+                <Image x:Name="CollegeLogo" Source="/Images/college.png" Height="2690" Width="2705" Stretch="UniformToFill"/>
             </Viewbox>
 
             <!-- Прогресс-бар -->

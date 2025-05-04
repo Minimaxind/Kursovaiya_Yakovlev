@@ -71,7 +71,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Column="0" Source="/email_icon.png" Width="24" Height="24" 
+                    <Image Grid.Column="0" Source="/Images/email_icon.png" Width="24" Height="24" 
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox x:Name="EmailTextBox" Grid.Column="1" Background="{x:Null}" FontSize="24"
                              Padding="15,5" BorderThickness="0" VerticalContentAlignment="Center" Foreground="#333333"/>
@@ -103,7 +103,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Column="0" Source="/password_icon.png" Width="24" Height="24" 
+                    <Image Grid.Column="0" Source="/Images/password_icon.png" Width="24" Height="24" 
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <PasswordBox x:Name="PasswordBox" Grid.Column="1" Background="{x:Null}" FontSize="24"
                                  Padding="15,5" BorderThickness="0" VerticalContentAlignment="Center" Foreground="#333333"
