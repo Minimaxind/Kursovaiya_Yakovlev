@@ -40,7 +40,9 @@ namespace Kursovaiya_Yakovlev
         }
         private void ContractsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ContractWindow contractWindow = new ContractWindow();
+            contractWindow.Show();
+            this.Close();
         }
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
