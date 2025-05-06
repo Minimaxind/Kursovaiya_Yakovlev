@@ -40,5 +40,7 @@ namespace Kursovaiya_Yakovlev
 
         [Column("updated_at", TypeName = "timestamp with time zone")]
         public DateTime? updatedAt { get; set; }
+
+        public string FullName => $"{lastName} {firstName} {surname}";
     }
 }

@@ -70,7 +70,7 @@ namespace Kursovaiya_Yakovlev
                 }
 
                 // Дополнительная проверка - выполняем простой запрос
-                var testQuery = await _dbContext.users.FirstOrDefaultAsync();
+                var testQuery = await _dbContext.Users.FirstOrDefaultAsync();
             }
             catch (DbUpdateException ex)
             {

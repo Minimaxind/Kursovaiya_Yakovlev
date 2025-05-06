@@ -11,7 +11,7 @@
         </Grid.RowDefinitions>
 
         <!-- Верхняя панель -->
-        <Border Background="#887BFF" Grid.Row="0" CornerRadius="0,0,100,0" Margin="-20,-21,-20,0"
+        <Border Background="#887BFF" Grid.Row="0"  Margin="-20,-21,-20,0"
                 Height="185" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid>
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,0,0,0">
@@ -65,7 +65,7 @@
                     Height="60" Click="ObjectsButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" CornerRadius="10">
+                        <Border Name="Border" Background="#0DA960" >
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -88,7 +88,7 @@
                     Height="60" Click="ServicesButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" CornerRadius="10">
+                        <Border Name="Border" Background="#0DA960" >
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -111,7 +111,7 @@
                     Height="60" Click="ContractsButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" CornerRadius="10">
+                        <Border Name="Border" Background="#0DA960" >
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -134,7 +134,7 @@
                     Height="60" Click="UsersButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" CornerRadius="10">
+                        <Border Name="Border" Background="#0DA960" >
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>

@@ -1,33 +1,97 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿    using Microsoft.EntityFrameworkCore;
 
-namespace Kursovaiya_Yakovlev
-{
-    public class DatabaseContext : DbContext
+    namespace Kursovaiya_Yakovlev
     {
+        public class DatabaseContext : DbContext
+        {
+        public DbSet<Service> Service { get; set; }
+        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Status> Status { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<HouseData> HouseData { get; set; }
 
-        public DbSet<Users> users { get; set; }
 
         public static DatabaseContext _context;
 
-        public DatabaseContext() { }
+            public DatabaseContext() { }
 
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+            public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(@"Host=172.20.7.53;Database=db3996_20;Username=root;Password=root");
-        }
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            {
+                optionsBuilder.UseNpgsql(@"Host=172.20.7.53;Database=db3996_20;Username=root;Password=root");
+            }
 
-        public static DatabaseContext GetContext()
-        {
-            if (_context == null) _context = new DatabaseContext();
-            return _context;
+            public static DatabaseContext GetContext()
+            {
+                var context = new DatabaseContext();
+                context.Database.EnsureCreated(); 
+                return context;
+            }
+
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                base.OnModelCreating(modelBuilder);
+
+                // Настройка таблицы HouseData
+                modelBuilder.Entity<HouseData>(entity =>
+                {
+                    entity.ToTable("house_data", "dbpr");
+             
+                });
+
+                // Настройка таблицы Transactions
+                modelBuilder.Entity<Transactions>(entity =>
+                {
+                    entity.ToTable("transactions", "dbpr");
+
+                    entity.HasOne(t => t.Property)
+                        .WithMany(h => h.Transactions)
+                        .HasForeignKey(t => t.PropertyId)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    entity.HasOne(t => t.Service)
+                        .WithMany()
+                        .HasForeignKey(t => t.ServiceId)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    entity.HasOne(t => t.Owner)
+                        .WithMany()
+                        .HasForeignKey(t => t.OwnerId)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    entity.HasOne(t => t.Client)
+                        .WithMany()
+                        .HasForeignKey(t => t.ClientId)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    entity.HasOne(t => t.Status)
+                        .WithMany()
+                        .HasForeignKey(t => t.StatusId)
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+                // Настройка таблицы Service
+                modelBuilder.Entity<Service>(entity =>
+                {
+                    entity.ToTable("service", "dbpr");
+                    entity.HasOne(s => s.Staff)
+                        .WithMany()
+                        .HasForeignKey(s => s.StaffId);
+                });
+
+                // Настройка таблицы Users
+                modelBuilder.Entity<Users>(entity =>
+                {
+                    entity.ToTable("users", "dbpr");
+                });
+
+                // Настройка таблицы Status
+                modelBuilder.Entity<Status>(entity =>
+                {
+                    entity.ToTable("status", "dbpr");
+                });
+            }
         }
     }
-}

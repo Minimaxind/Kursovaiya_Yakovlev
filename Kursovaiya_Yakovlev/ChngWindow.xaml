@@ -117,7 +117,7 @@
         </Grid.RowDefinitions>
 
         <!-- Шапка -->
-        <Border Background="#887BFF" Grid.Row="0" CornerRadius="0,0,100,0" Margin="-20,-20,-20,0" Height="185" VerticalAlignment="Top" Grid.RowSpan="2">
+        <Border Background="#887BFF" Grid.Row="0"  Margin="-20,-20,-20,0" Height="185" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid>
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Width="1253">
                     <TextBlock Text="Личные данные" FontSize="45" FontWeight="Bold" Foreground="White" Width="357" HorizontalAlignment="Center"/>
@@ -216,7 +216,7 @@
             <!-- Левая колонка -->
             <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="7" VerticalAlignment="Top" Margin="0,0,10,0">
                 <!-- Имя -->
-                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" >
                     <Grid>
                         <TextBox x:Name="FirstNameBox" Style="{StaticResource InputFieldStyle}"/>
                         <TextBlock Text="Имя" Style="{StaticResource TextBoxPlaceholderStyle}"/>
@@ -224,7 +224,7 @@
                 </Border>
 
                 <!-- Фамилия -->
-                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" >
                     <Grid>
                         <TextBox x:Name="LastNameBox" Style="{StaticResource InputFieldStyle}"/>
                         <TextBlock Text="Фамилия" Style="{StaticResource LastNamePlaceholderStyle}"/>
@@ -232,7 +232,7 @@
                 </Border>
 
                 <!-- Отчество -->
-                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" >
                     <Grid>
                         <TextBox x:Name="MiddleNameBox" Style="{StaticResource InputFieldStyle}"/>
                         <TextBlock Text="Отчество" Style="{StaticResource MiddleNamePlaceholderStyle}"/>
@@ -244,7 +244,7 @@
             <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="7" VerticalAlignment="Top" Margin="10,0,0,0">
 
                 <!-- Пароль -->
-                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" >
                     <Grid>
                         <PasswordBox x:Name="PasswordBox" Background="{x:Null}" FontSize="24"
                                      Padding="15,5" BorderThickness="0" VerticalContentAlignment="Center" 
@@ -255,7 +255,7 @@
                 </Border>
 
                 <!-- Паспорт -->
-                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" CornerRadius="10">
+                <Border Background="#D3D3D3" Height="60" Margin="0,0,0,20" >
                     <Grid>
                         <TextBox x:Name="PassportBox" Style="{StaticResource InputFieldStyle}"/>
                         <TextBlock Text="Паспорт" Style="{StaticResource PassportPlaceholderStyle}"/>
@@ -263,7 +263,7 @@
                 </Border>
 
                 <!-- Телефон -->
-                <Border Background="#D3D3D3" Height="60" CornerRadius="10">
+                <Border Background="#D3D3D3" Height="60" >
                     <Grid>
                         <TextBox x:Name="PhoneBox" Style="{StaticResource InputFieldStyle}"/>
                         <TextBlock Text="Номер телефона" Style="{StaticResource PhonePlaceholderStyle}"/>
@@ -277,7 +277,7 @@
                 Click="RegisterButton_Click" Margin="441,349,441,14" Grid.RowSpan="2" Grid.Row="1">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="Border" Background="#0DA960" CornerRadius="10" RenderTransformOrigin="0.5,0.5">
+                    <Border x:Name="Border" Background="#0DA960"  RenderTransformOrigin="0.5,0.5">
                         <Border.RenderTransform>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
                         </Border.RenderTransform>

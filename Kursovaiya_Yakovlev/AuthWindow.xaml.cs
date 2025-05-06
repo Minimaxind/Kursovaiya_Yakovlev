@@ -36,7 +36,7 @@ namespace Kursovaiya_Yakovlev
                 return;
             }
 
-            var user = _dbContext.users.FirstOrDefault(s => s.email == email && s.password == password);
+            var user = _dbContext.Users.FirstOrDefault(s => s.email == email && s.password == password);
             if (user != null)
             {
                 UserSession.UserId = user.Id;
