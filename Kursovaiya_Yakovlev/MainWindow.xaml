@@ -11,15 +11,14 @@
         </Grid.RowDefinitions>
 
         <!-- Верхняя панель -->
-        <Border Background="#887BFF" Grid.Row="0"  Margin="-20,-21,-20,0"
+        <Border Background="#887BFF" Grid.Row="0" Margin="-20,-21,-20,0"
                 Height="185" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid>
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,0,0,0">
                     <TextBlock Text="Главное меню" FontSize="36" FontWeight="Bold" Foreground="White" Height="53" Width="345"/>
-
                 </StackPanel>
                 <TextBlock x:Name="WelcomeText" Text="Здравствуйте, Имя Фамилия" FontSize="26" 
-           FontWeight="SemiBold" Foreground="White" Margin="737,66,62,50"/>
+                           FontWeight="SemiBold" Foreground="White" Margin="737,66,62,50"/>
 
                 <!-- Кнопка закрытия -->
                 <Button x:Name="CloseButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
@@ -59,98 +58,9 @@
         </Border>
 
         <!-- Основное содержимое - меню -->
-        <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,103,0,0" Width="400" Height="314">
-            <!-- Кнопка "Доступные объекты" -->
-            <Button x:Name="ObjectsButton" Content="Доступные объекты" FontSize="28" Margin="0,0,0,20"
-                    Height="60" Click="ObjectsButton_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" >
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-                <Button.Foreground>
-                    <SolidColorBrush Color="White"/>
-                </Button.Foreground>
-            </Button>
-
-            <!-- Кнопка "Услуги" -->
-            <Button x:Name="ServicesButton" Content="Услуги" FontSize="28" Margin="0,0,0,20"
-                    Height="60" Click="ServicesButton_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" >
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-                <Button.Foreground>
-                    <SolidColorBrush Color="White"/>
-                </Button.Foreground>
-            </Button>
-
-            <!-- Кнопка "Контракты" -->
-            <Button x:Name="ContractsButton" Content="Контракты" FontSize="28" Margin="0,0,0,20"
-                    Height="60" Click="ContractsButton_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" >
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-                <Button.Foreground>
-                    <SolidColorBrush Color="White"/>
-                </Button.Foreground>
-            </Button>
-
-            <!-- Кнопка "Пользователи" -->
-            <Button x:Name="UsersButton" Content="Пользователи" FontSize="28" Margin="0,0,0,20"
-                    Height="60" Click="UsersButton_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="Border" Background="#0DA960" >
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-                <Button.Foreground>
-                    <SolidColorBrush Color="White"/>
-                </Button.Foreground>
-            </Button>
+        <StackPanel x:Name="MenuPanel" Grid.Row="1" VerticalAlignment="Top" 
+                    HorizontalAlignment="Left" Margin="40,103,0,0" Width="400" Height="314">
+            <!-- Кнопки будут добавляться динамически в коде -->
         </StackPanel>
     </Grid>
 </Window>

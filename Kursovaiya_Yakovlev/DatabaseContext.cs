@@ -41,7 +41,7 @@
              
                 });
 
-                // Настройка таблицы Transactions
+               
                 modelBuilder.Entity<Transactions>(entity =>
                 {
                     entity.ToTable("transactions", "dbpr");
