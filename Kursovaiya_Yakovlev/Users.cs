@@ -17,8 +17,7 @@ namespace Kursovaiya_Yakovlev
         [Column("password", TypeName = "text")]
         public string password { get; set; }
 
-        [Column("access_r", TypeName = "integer")]
-        public int accessR { get; set; }
+      
 
         [Column("first_name", TypeName = "character varying(255)")]
         public string firstName { get; set; }
@@ -42,5 +41,13 @@ namespace Kursovaiya_Yakovlev
         public DateTime? updatedAt { get; set; }
 
         public string FullName => $"{lastName} {firstName} {surname}";
+
+        [Column("access_r", TypeName = "integer")]
+        public int AccessR { get; set; }
+
+        [ForeignKey("AccessR")]
+        public virtual AccessRights AccessRights { get; set; }
+
+
     }
 }

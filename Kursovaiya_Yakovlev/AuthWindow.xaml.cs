@@ -42,7 +42,7 @@ namespace Kursovaiya_Yakovlev
                 UserSession.UserId = user.Id;
                 UserSession.FirstName = user.firstName;
                 UserSession.LastName = user.lastName;
-                UserSession.accessR = user.accessR;
+                UserSession.accessR = user.AccessR;
                 MessageBox.Show($"Добро пожаловать, {user.firstName} {user.lastName}!");
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

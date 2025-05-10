@@ -1,0 +1,365 @@
+﻿<Window x:Class="Kursovaiya_Yakovlev.AddEditObjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding WindowTitle}" 
+        Height="1084" 
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="#E0E0E0">
+    <Window.Resources>
+        <Style x:Key="TextBoxLikeCheckBox" TargetType="CheckBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border x:Name="checkBoxBorder" 
+                                        Width="16" 
+                                        Height="16" 
+                                        Margin="5,0,5,0"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1"
+                                        Background="White"
+                                        VerticalAlignment="Center"/>
+
+                                <Path x:Name="checkMark"
+                                      Grid.Column="0"
+                                      Width="10"
+                                      Height="10"
+                                      Margin="8,0,5,0"
+                                      Data="M0,6 L3,9 L8,2"
+                                      Stroke="Black"
+                                      StrokeThickness="2"
+                                      Visibility="Collapsed"
+                                      VerticalAlignment="Center"/>
+
+                                <ContentPresenter Grid.Column="1"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="Left"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="checkBoxBorder" Property="Background" Value="#FFE6E6E6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SaveButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#0DA960"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border" Background="{TemplateBinding Background}" CornerRadius="3" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CancelButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#887BFF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border" Background="{TemplateBinding Background}" CornerRadius="3" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#968AFF"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#7A6DFF"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#887BFF" Grid.Row="0" Margin="-20,-21,-20,0"
+                Height="120" VerticalAlignment="Top">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding WindowTitle}" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                </StackPanel>
+
+                <Button x:Name="CloseButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,15,15,0" Width="30" Height="30" Background="Transparent" 
+                        BorderThickness="0" Click="CancelButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FF4444"/>
+                                <Grid Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="-45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" Margin="0,20,0,0" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Название:" Grid.Row="0" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                <Border Grid.Row="0" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,10" CornerRadius="3">
+                    <TextBox x:Name="TitleTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <Label Content="Описание:" Grid.Row="1" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                <Border Grid.Row="1" Grid.Column="1" Background="#D3D3D3" Height="100" Margin="0,5,0,10" CornerRadius="3">
+                    <TextBox x:Name="DescriptionTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap"/>
+                </Border>
+
+                <Label Content="Цена (руб):" Grid.Row="2" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                <Border Grid.Row="2" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,10" CornerRadius="3">
+                    <TextBox x:Name="PriceTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <Label Content="Адрес:" Grid.Row="3" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                <Border Grid.Row="3" Grid.Column="1" Background="#D3D3D3" Margin="0,5,0,10" CornerRadius="3" Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Индекс:" Grid.Row="0" Grid.Column="0" Margin="0,0,5,5" FontSize="16"/>
+                        <TextBox x:Name="ZipTextBox" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" FontSize="16"/>
+
+                        <Label Content="Город:" Grid.Row="1" Grid.Column="0" Margin="0,0,5,5" FontSize="16"/>
+                        <TextBox x:Name="CityTextBox" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" FontSize="16"/>
+
+                        <Label Content="Улица:" Grid.Row="2" Grid.Column="0" Margin="0,0,5,5" FontSize="16"/>
+                        <TextBox x:Name="StreetTextBox" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" FontSize="16"/>
+
+                        <Label Content="Дом:" Grid.Row="3" Grid.Column="0" Margin="0,0,5,5" FontSize="16"/>
+                        <TextBox x:Name="HouseNumberTextBox" Grid.Row="3" Grid.Column="1" Margin="0,0,0,5" FontSize="16"/>
+
+                        <Label Content="Квартира:" Grid.Row="4" Grid.Column="0" Margin="0,0,5,0" FontSize="16"/>
+                        <TextBox x:Name="ApartmentNumberTextBox" Grid.Row="4" Grid.Column="1" FontSize="16"/>
+                    </Grid>
+                </Border>
+
+                <Label Content="Статус:" Grid.Row="4" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                <Border Grid.Row="4" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,10" CornerRadius="3">
+                    <ComboBox x:Name="StatusComboBox" Background="Transparent" BorderThickness="0" 
+              FontSize="18" Padding="10" VerticalContentAlignment="Center"
+              DisplayMemberPath="Title"/>
+                </Border>
+
+                <Label Content="Характеристики:" Grid.Row="5" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,5,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Этаж:" Margin="5" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBox x:Name="FloorTextBox" Width="60" FontSize="16" Margin="5"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Площадь:" Margin="5" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBox x:Name="SquareTextBox" Width="60" FontSize="16" Margin="5"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Комнат:" Margin="5" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBox x:Name="RoomsTextBox" Width="60" FontSize="16" Margin="5"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <CheckBox x:Name="ElevatorCheckBox" Content="Лифт" Margin="5" Style="{StaticResource TextBoxLikeCheckBox}"/>
+                        <CheckBox x:Name="BalconyCheckBox" Content="Балкон" Margin="5" Style="{StaticResource TextBoxLikeCheckBox}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Label Content="Изображения:" Grid.Row="6" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+                <Border Grid.Row="6" Grid.Column="1" Background="#D3D3D3" Margin="0,5,0,20" CornerRadius="3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox x:Name="ImagesListBox" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                 Grid.Row="0">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="5">
+                                        <Image Source="{Binding Image}" Width="120" Height="120" Stretch="Uniform"/>
+                                        <TextBlock Text="{Binding Key}" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                        <TextBlock Text="{Binding Url}" Width="120" TextWrapping="Wrap" 
+                                                   TextTrimming="CharacterEllipsis" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Border Grid.Row="1" Background="#C0C0C0" Padding="5" CornerRadius="0,0,3,3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox x:Name="ImageUrlTextBox" Margin="0,0,5,0" Padding="5" 
+                                         VerticalContentAlignment="Center" FontSize="14"/>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Button Content="Добавить" Width="80" Margin="0,0,5,0" Click="AddImageButton_Click"/>
+                                    <Button Content="Удалить" Width="80" Click="RemoveImageButton_Click"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Сохранить" Style="{StaticResource SaveButtonStyle}" Margin="0,0,20,0" Click="SaveButton_Click"/>
+            <Button Content="Отмена" Style="{StaticResource CancelButtonStyle}" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -34,14 +34,14 @@ namespace Kursovaiya_Yakovlev
                     break;
                 case 3: // Клиент
                     AddMenuButton("Доступные объекты", ObjectsButton_Click);
-                    AddMenuButton("Услуги", ServicesButton_Click);
-                    AddMenuButton("Контракты", ContractsButton_Click);
+                    AddMenuButton("Запись на услуги", AddServicesButton_Click);
                     AddMenuButton("Личные данные", PersonalDataButton_Click);
                     break;
+                    
                 case 4: // Риелтор
                     AddMenuButton("Доступные объекты", ObjectsButton_Click);
-                    AddMenuButton("Мои объекты", MyObjectsButton_Click);
-                    AddMenuButton("Запись на услуги", ServicesButton_Click);
+                    AddMenuButton("Услуги", ServicesButton_Click);
+                    AddMenuButton("Контракты", ContractsButton_Click);
                     AddMenuButton("Личные данные", PersonalDataButton_Click);
                     break;
                 default:
@@ -120,17 +120,18 @@ namespace Kursovaiya_Yakovlev
 
         private void ObjectsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Логика для кнопки "Доступные объекты"
+            ObjectsWindow objectsWindow = new ObjectsWindow();
+            objectsWindow.Show();
+            this.Close();
         }
 
-        private void MyObjectsButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Логика для кнопки "Мои объекты" (для риелтора)
-        }
+       
 
         private void ServicesButton_Click(object sender, RoutedEventArgs e)
         {
-            // Логика для кнопки "Услуги" или "Запись на услуги"
+            ServiceWindow serviceWindow = new ServiceWindow();
+            serviceWindow.Show();
+            this.Close();
         }
 
         private void ContractsButton_Click(object sender, RoutedEventArgs e)
@@ -142,7 +143,9 @@ namespace Kursovaiya_Yakovlev
 
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
-            // Логика для кнопки "Пользователи" (для администратора)
+            UsersWindow usersWindow = new UsersWindow();
+            usersWindow.Show();
+            this.Close();
         }
 
         private void PersonalDataButton_Click(object sender, RoutedEventArgs e)
@@ -150,6 +153,13 @@ namespace Kursovaiya_Yakovlev
             ChngWindow personalDataWindow = new ChngWindow();
             personalDataWindow.Show();
             this.Close();
+        }
+
+        private void AddServicesButton_Click(object sender, RoutedEventArgs e)
+        {
+            ServiceAppointmentWindow serviceAppointmentWindow = new ServiceAppointmentWindow();
+            serviceAppointmentWindow.Show();
+            
         }
     }
 }

@@ -1,0 +1,189 @@
+﻿<Window x:Class="Kursovaiya_Yakovlev.AddEditUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавление/Редактирование пользователя" 
+        Height="650" 
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="#E0E0E0">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Background="#887BFF" Grid.Row="0" Margin="-20,-21,-20,0"
+                Height="120" VerticalAlignment="Top">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="TitleTextBlock" Text="Добавление/Редактирование пользователя" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                </StackPanel>
+
+                <!-- Close Button -->
+                <Button x:Name="CloseButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,15,15,0" Width="30" Height="30" Background="Transparent" 
+                        BorderThickness="0" Click="CancelButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FF4444"/>
+                                <Grid Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="-45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" Margin="0,20,0,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Email -->
+                <Label Content="Email:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <TextBox x:Name="EmailTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Password -->
+                <Label Content="Пароль:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <PasswordBox x:Name="PasswordBox" Background="Transparent" BorderThickness="0" 
+                                FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Confirm Password -->
+                <Label Content="Подтверждение пароля:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <PasswordBox x:Name="ConfirmPasswordBox" Background="Transparent" BorderThickness="0" 
+                                FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Access Rights -->
+                <Label Content="Права доступа:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <ComboBox x:Name="AccessRightsComboBox" Background="Transparent" BorderThickness="0" 
+                              FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Last Name -->
+                <Label Content="Фамилия:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <TextBox x:Name="LastNameTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- First Name -->
+                <Label Content="Имя:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <TextBox x:Name="FirstNameTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Surname -->
+                <Label Content="Отчество:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <TextBox x:Name="SurnameTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Passport -->
+                <Label Content="Паспортные данные:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <TextBox x:Name="PassportTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Phone -->
+                <Label Content="Телефон:" Margin="5,5,5,0" FontSize="18"/>
+                <Border Background="#D3D3D3" Height="50" Margin="5,0,5,10" CornerRadius="3">
+                    <TextBox x:Name="PhoneTextBox" Background="Transparent" BorderThickness="0" 
+                             FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Сохранить" Width="180" Height="50" Foreground="White" FontWeight="SemiBold" 
+                    FontSize="20" Margin="0,0,20,0" Click="SaveButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#0DA960"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="Border" Background="{TemplateBinding Background}" CornerRadius="3">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#0EBA6A"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#0C9A50"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Content="Отмена" Width="180" Height="50" Foreground="White" FontWeight="SemiBold" 
+                    FontSize="20" Click="CancelButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#887BFF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="Border" Background="{TemplateBinding Background}" CornerRadius="3">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#968AFF"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#7A6DFF"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

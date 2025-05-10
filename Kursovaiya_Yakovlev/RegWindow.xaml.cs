@@ -115,7 +115,7 @@ namespace Kursovaiya_Yakovlev
                     password = password, // Пароль сохраняется в открытом виде
                     passportNumber = passport,
                     phone = NormalizePhone(phone),
-                    accessR = 3, // Права доступа по умолчанию
+                    AccessR = 3, // Права доступа по умолчанию
                     createdAt = DateTime.UtcNow
                 };
 

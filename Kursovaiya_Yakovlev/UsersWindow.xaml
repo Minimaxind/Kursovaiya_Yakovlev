@@ -1,0 +1,243 @@
+﻿<Window x:Class="Kursovaiya_Yakovlev.UsersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление пользователями" 
+        Height="700" 
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="#E0E0E0">
+
+    <Window.Resources>
+        <!-- Стиль для TextBox с подсказкой -->
+        <Style x:Key="HintTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#FFBEBFBE"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Foreground" Value="#FF606060"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                <TextBlock x:Name="HintText" 
+                                           Text="{TemplateBinding Tag}"
+                                           Margin="5,0"
+                                           VerticalAlignment="Center"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Visibility="Collapsed"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="HintText" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для зеленых кнопок -->
+        <Style x:Key="GreenButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#0DA960"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для ComboBox -->
+        <Style x:Key="RoundedComboBoxStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Background" Value="#FFBEBFBE"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Border Background="#887BFF" Grid.Row="0" Margin="-20,-21,-20,0"
+                Height="120" VerticalAlignment="Top">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,0,0,0">
+                    <TextBlock Text="Управление пользователями" 
+                               FontSize="36" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                </StackPanel>
+
+                <!-- Кнопки управления -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,-60,10,0" RenderTransformOrigin="0.5,0.5">
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
+                    <Button x:Name="CloseButton" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0" Width="30" Height="30" Background="Transparent" BorderThickness="0" Click="CloseButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid>
+                                    <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FF4444"/>
+                                    <Grid Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="45" CenterX="10" CenterY="10"/>
+                                            </Path.RenderTransform>
+                                        </Path>
+                                        <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="-45" CenterX="10" CenterY="10"/>
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Grid>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="BackButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+Margin="0,15,50,0" Width="30" Height="30" Background="Transparent" 
+BorderThickness="0" Click="BackButton_Click" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid>
+                                    <!-- Белый круг -->
+                                    <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FFE0E0E0"/>
+
+                                    <!-- Классическая стрелка влево -->
+                                    <Viewbox Width="20" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Path Data="M15,8 L5,8 M5,8 L9,4 M5,8 L9,12" 
+                  Stroke="#887BFF"
+                  StrokeThickness="2"
+                  StrokeLineJoin="Round"
+                  StrokeStartLineCap="Round" 
+                  StrokeEndLineCap="Round" Height="16" Stretch="Fill" Width="16">
+                                            <Path.RenderTransform>
+                                                <TranslateTransform X="0.5" Y="0.5"/>
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Viewbox>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="circle" Property="Fill" Value="white"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="circle" Property="Fill" Value="Silver"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Фильтры -->
+            <StackPanel Grid.Column="0" Margin="5">
+                <TextBlock Text="Фильтры:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                <TextBox x:Name="SearchTextBox" Style="{StaticResource HintTextBoxStyle}" 
+                         Tag="Поиск по ФИО" Margin="0,0,0,10"/>
+
+                <ComboBox x:Name="RoleComboBox" Style="{StaticResource RoundedComboBoxStyle}" 
+                          DisplayMemberPath="Title" SelectedValuePath="Id"
+                          Tag="Выберите роль" Margin="0,0,0,20"/>
+            </StackPanel>
+
+            <!-- Таблица данных -->
+            <Border Grid.Column="1" Background="#D3D3D3" Margin="10" CornerRadius="3">
+                <DataGrid x:Name="UsersDataGrid" Margin="5" AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          SelectionChanged="UsersDataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="*"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="*"/>
+                        <DataGridTextColumn Header="Роль" Binding="{Binding AccessRights.Title}" Width="Auto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+            <!-- Кнопки действий -->
+            <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="5">
+                <Button Content="Добавить" Click="AddButton_Click" 
+                        Style="{StaticResource GreenButtonStyle}"/>
+                <Button Content="Изменить" Click="EditButton_Click" 
+                        Style="{StaticResource GreenButtonStyle}"/>
+                <Button Content="Удалить" Click="DeleteButton_Click" 
+                        Style="{StaticResource GreenButtonStyle}"/>
+                <Button Content="Сбросить пароль" Click="ResetPasswordButton_Click" 
+                        Style="{StaticResource GreenButtonStyle}" Margin="0,20,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

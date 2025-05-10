@@ -130,7 +130,7 @@ namespace Kursovaiya_Yakovlev
         {
             UserSession.FirstName = _currentUser.firstName;
             UserSession.LastName = _currentUser.lastName;
-            UserSession.accessR = _currentUser.accessR;
+            UserSession.accessR = _currentUser.AccessR;
         }
 
         #region Методы валидации

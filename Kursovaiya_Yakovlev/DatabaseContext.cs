@@ -1,4 +1,5 @@
 ﻿    using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
     namespace Kursovaiya_Yakovlev
     {
@@ -10,6 +11,7 @@
         public DbSet<Transactions> Transactions { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<HouseData> HouseData { get; set; }
+        public DbSet<AccessRights> AccessRights { get; set; }
 
 
         public static DatabaseContext _context;
@@ -93,5 +95,20 @@
                     entity.ToTable("status", "dbpr");
                 });
             }
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Properties<DateTime>()
+                .HaveConversion<DateTimeToLocalConverter>();
         }
+
+        public class DateTimeToLocalConverter : ValueConverter<DateTime, DateTime>
+        {
+            public DateTimeToLocalConverter()
+                : base(
+                    v => v.Kind == DateTimeKind.Utc ? v.ToLocalTime() : v,
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Unspecified))
+            {
+            }
+        }
+    }
     }

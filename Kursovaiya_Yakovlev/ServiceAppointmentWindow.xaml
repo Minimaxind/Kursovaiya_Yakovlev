@@ -1,0 +1,211 @@
+﻿<Window x:Class="Kursovaiya_Yakovlev.ServiceAppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Запись на услугу" 
+        Height="711" 
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="#E0E0E0">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Border Background="#887BFF" Grid.Row="0" Margin="-20,-21,-20,0"
+                Height="120" VerticalAlignment="Top">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Запись на услугу" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                </StackPanel>
+
+                <!-- Кнопка закрытия -->
+                <Button x:Name="CloseButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,15,15,0" Width="30" Height="30" Background="Transparent" 
+                        BorderThickness="0" Click="CancelButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Ellipse x:Name="circle" Width="30" Height="30" Fill="#FF4444"/>
+                                <Grid Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                    <Path Data="M0,10 L20,10" Stroke="White" StrokeThickness="2"
+                                          StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="-45" CenterX="10" CenterY="10"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF5555"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="circle" Property="Fill" Value="#FF3333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Специалист -->
+            <Label Content="Специалист:" Grid.Row="0" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <Border Grid.Row="0" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,10" CornerRadius="3">
+                <ComboBox x:Name="StaffComboBox" Background="Transparent" BorderThickness="0" 
+                          FontSize="18" Padding="10" VerticalContentAlignment="Center"
+                          SelectionChanged="StaffComboBox_SelectionChanged"/>
+            </Border>
+
+            <!-- Услуга -->
+            <Label Content="Услуга:" Grid.Row="1" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <Border Grid.Row="1" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,10" CornerRadius="3">
+                <ComboBox x:Name="ServiceComboBox" Background="Transparent" BorderThickness="0" 
+                          FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+            </Border>
+
+            <!-- Цена услуги -->
+            <Label Content="Цена услуги:" Grid.Row="2" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <TextBlock x:Name="PriceTextBlock" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+
+            <!-- Объект недвижимости -->
+            <Label Content="Объект недвижимости:" Grid.Row="3" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <Border Grid.Row="3" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,10" CornerRadius="3">
+                <ComboBox x:Name="PropertyComboBox" Background="Transparent" BorderThickness="0" 
+                          FontSize="18" Padding="10" VerticalContentAlignment="Center"/>
+            </Border>
+
+            <!-- Клиент -->
+            <Label Content="Клиент:" Grid.Row="4" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <TextBlock x:Name="ClientTextBlock" Grid.Row="4" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+
+            <!-- Сумма транзакции -->
+            <Label Content="Сумма транзакции:" Grid.Row="5" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <TextBlock x:Name="AmountTextBlock" Grid.Row="5" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+
+            <!-- Дата -->
+            <Label Content="Дата услуги:" Grid.Row="6" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <Border Grid.Row="6" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,10" CornerRadius="3">
+                <DatePicker x:Name="DatePicker" Background="Transparent" BorderThickness="0" 
+                           FontSize="18" Padding="5" VerticalContentAlignment="Center"/>
+            </Border>
+
+            <!-- Время -->
+            <Label Content="Время услуги:" Grid.Row="7" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center"/>
+            <Border Grid.Row="7" Grid.Column="1" Background="#D3D3D3" Height="50" Margin="0,5,0,20" CornerRadius="3">
+                <ComboBox x:Name="TimeComboBox" Background="Transparent" BorderThickness="0" 
+                          FontSize="18" Padding="10" VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="09:00"/>
+                    <ComboBoxItem Content="10:00"/>
+                    <ComboBoxItem Content="11:00"/>
+                    <ComboBoxItem Content="12:00"/>
+                    <ComboBoxItem Content="13:00"/>
+                    <ComboBoxItem Content="14:00"/>
+                    <ComboBoxItem Content="15:00"/>
+                    <ComboBoxItem Content="16:00"/>
+                    <ComboBoxItem Content="17:00"/>
+                    <ComboBoxItem Content="18:00"/>
+                </ComboBox>
+            </Border>
+        </Grid>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Записаться" Width="180" Height="50" Foreground="White" FontWeight="SemiBold" 
+                    FontSize="20" Margin="0,0,20,0" Click="SaveButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border" Background="#0DA960" CornerRadius="3" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0EBA6A"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0C9A50"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Отмена" Width="180" Height="50" Foreground="White" FontWeight="SemiBold" 
+                    FontSize="20" Click="CancelButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border" Background="#887BFF" CornerRadius="3" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#968AFF"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#7A6DFF"/>
+                                <Setter TargetName="Border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
