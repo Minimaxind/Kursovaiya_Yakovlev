@@ -276,12 +276,12 @@ BorderThickness="0" Click="BackButton_Click">
                         HorizontalAlignment="Center" Click="PrintButton_Click"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Content="Удалить" Style="{StaticResource GreenButtonStyle}" Width="90" 
-                            Click="DeleteButton_Click"/>
-                    <Button Content="Добавить" Style="{StaticResource GreenButtonStyle}" Width="90" 
-                            Click="AddButton_Click" Margin="5,0"/>
-                    <Button Content="Изменить" Style="{StaticResource GreenButtonStyle}" Width="90" 
-                            Click="EditButton_Click"/>
+                    <Button x:Name="DeleteButton" Content="Удалить" Style="{StaticResource GreenButtonStyle}" Width="90" 
+            Click="DeleteButton_Click"/>
+                    <Button x:Name="AddButton" Content="Добавить" Style="{StaticResource GreenButtonStyle}" Width="90" 
+            Click="AddButton_Click" Margin="5,0"/>
+                    <Button x:Name="EditButton" Content="Изменить" Style="{StaticResource GreenButtonStyle}" Width="90" 
+            Click="EditButton_Click"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
