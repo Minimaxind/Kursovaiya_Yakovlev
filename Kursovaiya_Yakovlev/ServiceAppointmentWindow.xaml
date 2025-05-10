@@ -4,7 +4,7 @@
         Title="Запись на услугу" 
         Height="711" 
         Width="600"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="#E0E0E0">
