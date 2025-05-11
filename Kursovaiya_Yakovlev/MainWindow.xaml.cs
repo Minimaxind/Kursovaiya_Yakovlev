@@ -15,10 +15,7 @@ namespace Kursovaiya_Yakovlev
 
         private void InitializeMenu()
         {
-            // Очищаем меню перед созданием новых кнопок
             MenuPanel.Children.Clear();
-
-            // Создаем кнопки в зависимости от роли пользователя
             switch (UserSession.accessR)
             {
                 case 1: // Администратор
