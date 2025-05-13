@@ -1,12 +1,17 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Kursovaiya_Yakovlev
 {
@@ -120,6 +125,7 @@ namespace Kursovaiya_Yakovlev
         private void UpdateImagesList()
         {
             ImagesListBox.Items.Clear();
+
             foreach (var image in _imageUrls)
             {
                 try
@@ -139,11 +145,35 @@ namespace Kursovaiya_Yakovlev
                 }
                 catch
                 {
+                    // Создаем изображение "Нет изображения" программно
+                    var drawingVisual = new DrawingVisual();
+                    using (var drawingContext = drawingVisual.RenderOpen())
+                    {
+                        // Рисуем серый фон
+                        drawingContext.DrawRectangle(Brushes.LightGray, null, new Rect(0, 0, 100, 100));
+
+                        // Рисуем текст
+                        var text = new FormattedText(
+                            "Нет изображения",
+                            CultureInfo.CurrentCulture,
+                            FlowDirection.LeftToRight,
+                            new Typeface("Arial"),
+                            12,
+                            Brushes.Black,
+                            VisualTreeHelper.GetDpi(drawingVisual).PixelsPerDip);
+
+                        // Центрируем текст
+                        drawingContext.DrawText(text, new Point(50 - text.Width / 2, 40));
+                    }
+
+                    var imageSource = new RenderTargetBitmap(100, 100, 96, 96, PixelFormats.Pbgra32);
+                    imageSource.Render(drawingVisual);
+
                     ImagesListBox.Items.Add(new ImageItem
                     {
                         Key = image.Key,
-                        Image = new BitmapImage(new Uri("pack://application:,,,/Resources/no_image.png")),
-                        Url = image.Value
+                        Image = imageSource,
+                        Url = "Изображение недоступно"
                     });
                 }
             }
@@ -220,7 +250,11 @@ namespace Kursovaiya_Yakovlev
                     _houseData.Description = DescriptionTextBox.Text;
                     _houseData.Price = decimal.Parse(PriceTextBox.Text);
                     _houseData.StatusId = (int)StatusComboBox.SelectedValue;
-                    _houseData.UpdatedAt = DateTime.Now;
+                    _houseData.UpdatedAt = DateTime.Now; 
+                    if (!_isEditMode)
+                    {
+                        _houseData.CreatedAt = DateTime.Now; 
+                    }
 
                     // Изменения для работы с адресом
                     if (!string.IsNullOrWhiteSpace(CityTextBox.Text) &&
@@ -340,7 +374,7 @@ namespace Kursovaiya_Yakovlev
     public class ImageItem
     {
         public string Key { get; set; }
-        public BitmapImage Image { get; set; }
+        public ImageSource Image { get; set; }
         public string Url { get; set; }
     }
 }

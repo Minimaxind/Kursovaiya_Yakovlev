@@ -15,7 +15,7 @@ namespace Kursovaiya_Yakovlev
         {
             InitializeComponent();
             _isEditMode = false;
-            _user = new Users { createdAt = DateTime.Now };
+            _user = new Users { createdAt = DateTime.UtcNow };
             LoadData();
             TitleTextBlock.Text = "Добавление нового пользователя";
         }
@@ -95,7 +95,7 @@ namespace Kursovaiya_Yakovlev
                 _user.passportNumber = PassportTextBox.Text.Trim();
                 _user.phone = PhoneTextBox.Text.Trim();
                 _user.AccessR = selectedRoleId; // Устанавливаем новую роль
-                _user.updatedAt = DateTime.Now;
+                _user.updatedAt = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
 
                 // Если пароль изменён (для нового пользователя или при явном изменении)
                 if (!_isEditMode || !string.IsNullOrEmpty(PasswordBox.Password))

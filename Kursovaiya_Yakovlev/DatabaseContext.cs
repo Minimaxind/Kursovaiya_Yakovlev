@@ -31,13 +31,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
                 context.Database.EnsureCreated(); 
                 return context;
             }
-
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
+       
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
                 base.OnModelCreating(modelBuilder);
 
-                // Настройка таблицы HouseData
-                modelBuilder.Entity<HouseData>(entity =>
+            modelBuilder.Entity<Transactions>()
+                 .Property(t => t.TransactionDate)
+                 .HasConversion(
+                     v => v.ToLocalTime(), 
+                     v => DateTime.SpecifyKind(v, DateTimeKind.Utc)); 
+
+            modelBuilder.Entity<HouseData>(entity =>
                 {
                     entity.ToTable("house_data", "dbpr");
              
@@ -98,15 +103,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {
             configurationBuilder.Properties<DateTime>()
-                .HaveConversion<DateTimeToLocalConverter>();
+                .HaveConversion<DateTimeToUtcConverter>();
         }
 
-        public class DateTimeToLocalConverter : ValueConverter<DateTime, DateTime>
+        public class DateTimeToUtcConverter : ValueConverter<DateTime, DateTime>
         {
-            public DateTimeToLocalConverter()
+            public DateTimeToUtcConverter()
                 : base(
-                    v => v.Kind == DateTimeKind.Utc ? v.ToLocalTime() : v,
-                    v => DateTime.SpecifyKind(v, DateTimeKind.Unspecified))
+                    v => v.Kind == DateTimeKind.Utc ? v : v.ToUniversalTime(),
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc))
             {
             }
         }

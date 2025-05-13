@@ -9,6 +9,16 @@ namespace Kursovaiya_Yakovlev
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // Глобальный обработчик ошибок
+            DispatcherUnhandledException += (sender, args) =>
+            {
+                args.Handled = true;
+            };
+        }
     }
 
 }

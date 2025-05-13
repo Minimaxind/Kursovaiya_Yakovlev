@@ -49,10 +49,10 @@ namespace Kursovaiya_Yakovlev
             }
         }
 
-        [Column("created_at", TypeName = "timestamp without time zone")]
+        [Column("created_at", TypeName = "timestamp with time zone")]
         public DateTime CreatedAt { get; set; }
 
-        [Column("updated_at", TypeName = "timestamp without time zone")]
+        [Column("updated_at", TypeName = "timestamp with time zone")]
         public DateTime? UpdatedAt { get; set; }
 
         [Column("properties", TypeName = "jsonb")]

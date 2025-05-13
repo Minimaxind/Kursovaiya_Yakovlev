@@ -103,7 +103,7 @@ namespace Kursovaiya_Yakovlev
                 _transaction.OwnerId = (int)OwnerComboBox.SelectedValue;
                 _transaction.ClientId = (int)ClientComboBox.SelectedValue;
                 _transaction.Amount = amount;
-                _transaction.TransactionDate = DatePicker.SelectedDate.Value;
+                _transaction.TransactionDate = DateTime.SpecifyKind(DatePicker.SelectedDate.Value, DateTimeKind.Utc);
                 _transaction.StatusId = (int)StatusComboBox.SelectedValue;
 
                 using (var context = DatabaseContext.GetContext())
@@ -124,7 +124,12 @@ namespace Kursovaiya_Yakovlev
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при сохранении контракта: {ex.Message}", "Ошибка",
+                string errorDetails = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    errorDetails += "\nInner Exception: " + ex.InnerException.Message;
+                }
+                MessageBox.Show($"Ошибка при сохранении контракта: {errorDetails}", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
